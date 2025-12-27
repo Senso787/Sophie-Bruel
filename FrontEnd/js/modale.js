@@ -4,6 +4,7 @@ import {
   createWork,
   deleteWork,
 } from "./apiClient.js";
+
 const btnModifier = document.getElementById("btn-modifier-projets");
 const overlay = document.getElementById("modal-overlay");
 const container = document.getElementById("modal-container");
@@ -70,6 +71,7 @@ async function showGallery() {
       try {
         await deleteWork(id, token);
         showGallery();
+        window.refreshGallery(); // mise à jour de la galerie principale
       } catch (err) {
         alert("Erreur lors de la suppression");
         console.error(err);
@@ -170,12 +172,14 @@ async function showAddForm() {
       try {
         await createWork(formData, token);
         showGallery();
+        window.refreshGallery(); // mise à jour de la galerie principale
       } catch (err) {
         alert("Erreur lors de l'ajout du projet");
         console.error(err);
       }
     });
 }
+
 /* ----------------------------------------------------
    DÉMARRAGE
 ---------------------------------------------------- */
