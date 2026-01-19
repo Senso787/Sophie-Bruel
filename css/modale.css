@@ -1,0 +1,247 @@
+/* -------------------------------
+   OVERLAY
+------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* -------------------------------
+   CONTENEUR MODALE
+------------------------------- */
+.modal-container {
+  background: #fff;
+  border-radius: 10px;
+  width: 630px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  padding: 26px 30px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------------------
+   HEADER MODALE (commun)
+------------------------------- */
+.modal-header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 18px;
+  padding-top: 6px;
+}
+
+.modal-header h2 {
+  font-family: "Work Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 8px 0 0;
+  color: #000;
+}
+
+.modal-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 18px;
+  cursor: pointer;
+  color: #000;
+  line-height: 1;
+}
+
+.modal-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 22px;
+  cursor: pointer;
+  color: #000;
+  line-height: 1;
+}
+
+/* -------------------------------
+   PAGE 1 : GALERIE PHOTO
+------------------------------- */
+.modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px 12px;
+  width: 420px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.modal-item {
+  position: relative;
+  width: 100%;
+}
+
+.modal-item img {
+  width: 100%;
+  height: 118px;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 17px;
+  height: 17px;
+  border-radius: 2px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-delete i {
+  font-size: 9px;
+  line-height: 1;
+}
+
+.modal-divider {
+  border-top: 1px solid #b3b3b3;
+  width: 420px;
+  max-width: 100%;
+  margin: 22px auto 18px;
+}
+
+#open-add-modal.modal-btn-primary {
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  border: none;
+  background: #1d6154;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: block;
+  margin: 0 auto 4px;
+  cursor: pointer;
+}
+
+/* -------------------------------
+   PAGE 2 : AJOUT PHOTO
+------------------------------- */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.modal-upload {
+  background: #e8f1f6;
+  border-radius: 3px;
+  height: 169px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 24px;
+}
+
+.upload-preview {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-placeholder i {
+  font-size: 60px;
+  color: #b9c5cc;
+}
+
+.upload-btn {
+  background: #cbd6dc;
+  color: #306685;
+  border-radius: 50px;
+  padding: 10px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.upload-help {
+  font-size: 10px;
+  color: #444;
+}
+
+.upload-preview img {
+  max-height: 169px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-form label {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 8px;
+  color: #000;
+  width: 100%;
+}
+
+.modal-form input,
+.modal-form select {
+  height: 51px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 0 15px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  margin: 0 0 18px;
+}
+
+.modal-form .modal-divider {
+  border-top: 1px solid #b3b3b3;
+  width: 100%;
+  margin: 14px 0 18px;
+}
+
+.modal-btn-disabled {
+  width: 237px;
+  height: 36px;
+  margin: 0 auto;
+  border-radius: 60px;
+  border: none;
+  background: #a7a7a7;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: not-allowed;
+}
+
+.modal-btn-disabled.enabled {
+  background: #1d6154;
+  cursor: pointer;
+}
