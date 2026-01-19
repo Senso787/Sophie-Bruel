@@ -42,6 +42,7 @@ async function showGallery() {
     </div>
 
     <div class="modal-gallery"></div>
+     <div class="modal-divider"></div>
 
     <button id="open-add-modal" class="modal-btn-primary">Ajouter une photo</button>
   `;
@@ -99,16 +100,18 @@ async function showAddForm() {
   container.innerHTML = `
     <div class="modal-header">
       <span class="modal-back">&larr;</span>
-      <h2>Ajouter photo</h2>
+      <h2>Ajout photo</h2>
       <span class="modal-close">&times;</span>
     </div>
 
     <form class="modal-form">
       <div class="modal-upload">
         <div class="upload-preview" id="preview-container">
-          <span class="upload-placeholder">
-            <i class="fa-regular fa-image"></i> + Ajouter photo
-          </span>
+         <span class="upload-placeholder">
+            <i class="fa-regular fa-image"></i>
+            <button type="button" class="upload-btn">+ Ajouter photo</button>
+            <span class="upload-help">jpg, png : 4mo max</span>
+        </span>
         </div>
         <input type="file" id="image-input" accept="image/*" hidden>
       </div>
@@ -121,6 +124,7 @@ async function showAddForm() {
         ${categoryOptions}
       </select>
 
+      <div class="modal-divider"></div>
       <button id="submit-photo" class="modal-btn-disabled" disabled>Valider</button>
     </form>
       `;
@@ -139,17 +143,34 @@ async function showAddForm() {
   imageInput.addEventListener("change", () => {
     const file = imageInput.files[0];
     if (!file) return;
+
+    const allowedTypes = ["image/jpeg", "image/png"];
+    const maxSize = 4 * 1024 * 1024;
+
+    if (!allowedTypes.includes(file.type)) {
+      alert("Format invalide. Seuls les fichiers JPG et PNG sont autorisés.");
+      imageInput.value = "";
+      return;
+    }
+
+    if (file.size > maxSize) {
+      alert("Fichier trop volumineux. Taille maximale : 4 Mo.");
+      imageInput.value = "";
+      return;
+    }
+
     preview.innerHTML = "";
     const img = document.createElement("img");
     img.src = URL.createObjectURL(file);
     preview.appendChild(img);
+
     validateForm();
   });
 
   function validateForm() {
     if (titleInput.value && selectCat.value && imageInput.files.length > 0) {
       submitBtn.disabled = false;
-      submitBtn.className = "modal-btn-primary";
+      submitBtn.className = "modal-btn-disabled enabled";
     } else {
       submitBtn.disabled = true;
       submitBtn.className = "modal-btn-disabled";

@@ -183,3 +183,37 @@ footer nav ul {
   justify-content: flex-end;
   margin: 2em;
 }
+
+/* ---------------------------
+  BANNIERE
+---------------------------- */
+.edit-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 38px;
+
+  background-color: #000;
+  color: #fff;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 400;
+  z-index: 1000;
+}
+
+.edit-banner p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.edit-banner i {
+  font-size: 14px;
+}

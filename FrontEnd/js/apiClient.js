@@ -14,6 +14,12 @@ export async function getWorks() {
 }
 
 // Créer un projet
+/**
+ *Créer un projet
+ * @param {string} formData
+ * @param {string} token
+ * @returns
+ */
 export async function createWork(formData, token) {
   const response = await fetch(BASE_URL + "/works", {
     method: "POST",
@@ -31,6 +37,12 @@ export async function createWork(formData, token) {
 }
 
 // Supprimer un projet par son id
+/**
+ * Supprimer un projet "works" selon son id
+ * @param {Number} id
+ * @param {String} token
+ * @returns boleen
+ */
 export async function deleteWork(id, token) {
   const response = await fetch(BASE_URL + "/works/" + id, {
     method: "DELETE",

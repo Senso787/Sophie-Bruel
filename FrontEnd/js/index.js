@@ -11,6 +11,7 @@ let currentCategory = "all";
 --------------------------------------------------- */
 async function init() {
   updateUIAuth();
+  toggleFiltersVisibility();
   allWorks = await getWorks();
   await displayWorks(allWorks);
   await setupFilters();
@@ -34,11 +35,13 @@ function updateUIAuth() {
     loginLink.textContent = "logout";
     loginLink.removeAttribute("href");
     loginLink.style.cursor = "pointer";
+    displayEditBanner();
+    toggleFiltersVisibility();
 
     if (editButton) editButton.style.display = "inline-flex";
 
     loginLink.onclick = (e) => {
-      e.preventDefault(); // 🔥 BLOQUE TOUTE NAVIGATION
+      e.preventDefault();
       localStorage.removeItem("token");
       updateUIAuth();
     };
@@ -47,12 +50,32 @@ function updateUIAuth() {
     loginLink.textContent = "login";
     loginLink.href = "login.html";
     loginLink.style.cursor = "pointer";
+    displayEditBanner();
+    toggleFiltersVisibility();
 
     if (editButton) editButton.style.display = "none";
 
     loginLink.onclick = null; // comportement normal du lien
   }
 }
+
+// ==== BANNIERE ====
+function displayEditBanner() {
+  const banner = document.getElementById("editBanner");
+  const token = localStorage.getItem("token");
+
+  if (!banner) return;
+
+  if (token) {
+    banner.style.display = "flex";
+  } else {
+    banner.style.display = "none";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  displayEditBanner();
+});
 
 /* -------------------------------------------------------
    AFFICHAGE DES PROJETS
@@ -105,10 +128,7 @@ async function setupFilters() {
   });
 
   // Gestion clics
-  const buttons =
-    filtersContainer.querySelectorAll(
-      "button"
-    ); /* remplacer par getelementbyId*/
+  const buttons = filtersContainer.querySelectorAll("button");
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       buttons.forEach((btn) => btn.classList.remove("active"));
@@ -126,9 +146,21 @@ function applyFilter() {
     displayWorks(allWorks);
   } else {
     const filtered = allWorks.filter(
-      (work) => work.category.id == currentCategory
+      (work) => work.category.id == currentCategory,
     );
     displayWorks(filtered);
+  }
+}
+
+// Afficher ou non les boutons filtres
+function toggleFiltersVisibility() {
+  const filtersContainer = document.getElementById("id-filters");
+  if (!filtersContainer) return;
+
+  if (isLoggedIn()) {
+    filtersContainer.style.display = "none";
+  } else {
+    filtersContainer.style.display = "flex";
   }
 }
 
