@@ -1,0 +1,11 @@
+﻿{
+    "displayOrder":  4,
+    "title":  {
+                  "en":  "Showcase website for Sophie Bluel",
+                  "fr":  "Site vitrine pour Sophie Bluel"
+              },
+    "technologies":  [
+                         "HTML",
+                         "CSS"
+                     ]
+}
